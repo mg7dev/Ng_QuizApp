@@ -1,0 +1,8 @@
+﻿<nav class="docs-navbar-header" aria-label="Top Toolbar">
+    <a mat-button class=" docs-button top-items" routerLink="/">Quiz Application</a>
+    <div class="flex-spacer"></div>
+    <button mat-button [matMenuTriggerFor]="selectquiz">Menu</button>
+    <mat-menu #selectquiz="matMenu">
+        <a mat-menu-item *ngFor="let quiz of QUIZES" (click)="go_page( quiz )">{{ quiz }}</a>
+    </mat-menu>
+</nav>

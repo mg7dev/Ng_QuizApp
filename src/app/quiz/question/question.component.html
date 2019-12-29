@@ -1,0 +1,37 @@
+<nav class="docs-navbar-header" aria-label="Top Toolbar">
+    <a mat-button class=" docs-button top-items" routerLink="/">Quiz Application</a>
+    <div class="flex-spacer"></div>
+    <button mat-button [matMenuTriggerFor]="selectquiz">Menu</button>
+    <mat-menu #selectquiz="matMenu">
+        <a mat-menu-item *ngFor="let quiz of QUIZES" (click)="go_page( quiz )">{{ quiz }}</a>
+    </mat-menu>
+</nav>
+<div class="container ">
+    <h1 ng-init="crnt_quiz = ''" style="font-size: 24px;font-weight: bold;padding: 15px;text-align: center;">{{ crnt_quiz }}</h1>
+    <hr>
+    <h5>Question  {{ crnt_qid*1+1 }} of {{ questions.length }} </h5>
+    <h3 ng-init="crnt_quiz = ''" >{{ crnt_question.text }}</h3>
+    <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="crnt_score">
+        <div class="row">
+            <div class="col-xs-6 p-1"  *ngFor="let qn of crnt_question.chklist;index as i;">
+                <mat-radio-button class="example-radio-button" [value]=" i ">
+                    {{qn}}
+                </mat-radio-button>
+            </div>
+        </div>
+    </mat-radio-group>
+    <hr>
+    <div class="row">
+        <div class="col" style="text-align: center;">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle (click)="go_question('frist')" style="width: 15vw;">First</mat-button-toggle>
+                <!-- <mat-button-toggle (click)="go_question('prev')" style="width: 15vw;">Prev</mat-button-toggle> -->
+                <mat-button-toggle (click)="go_question('next')" style="width: 15vw;">Next</mat-button-toggle>
+                <mat-button-toggle (click)="go_question('last')"  style="width: 15vw;">Last</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+</div>
